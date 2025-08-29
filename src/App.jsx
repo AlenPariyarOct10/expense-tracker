@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import Balance from "./components/Balance";
+import ExpenseCard from "./components/ExpenseCard";
+import IncomeCard from "./components/IncomeCard"; // fixed
+import Header from "./components/Header";
+import TransactionItem from "./components/TransactionItem";
+import History from "./components/History"; // added
+import Button from "./components/Button";
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-gray-200 min-h-screen py-8">
+      <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
+
+        <Header />
+        <Balance />
+
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <IncomeCard></IncomeCard>
+          <ExpenseCard></ExpenseCard>
+        </div>
+
+        <div className="mb-8">
+          <History />
+
+          <div className="space-y-2">
+            <TransactionItem />
+          </div>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">
+            Add new transaction
+          </h3>
+
+          <form className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Text
+              </label>
+              <input
+                type="text"
+                placeholder="Enter text..."
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Amount
+              </label>
+              <p className="text-xs text-gray-500 mb-2">
+                (negative - expense, positive - income)
+              </p>
+              <input
+                type="number"
+                placeholder="Enter amount..."
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+              />
+            </div>
+            <Button text="Add Transaction" />
+          </form>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
